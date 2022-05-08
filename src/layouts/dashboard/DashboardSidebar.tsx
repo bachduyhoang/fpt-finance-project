@@ -2,21 +2,12 @@ import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
-import {
-  Box,
-  Link,
-  Stack,
-  Button,
-  Drawer,
-  Tooltip,
-  Typography,
-  CardActionArea
-} from '@material-ui/core';
+import { Box, Link, Stack, Drawer, Tooltip, Typography, CardActionArea } from '@material-ui/core';
 // hooks
 import useAuth from '../../hooks/useAuth';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // routes
-import { PATH_DASHBOARD, PATH_DOCS } from '../../routes/paths';
+import { PATH_DASHBOARD } from '../../routes/paths';
 // components
 import Logo from '../../components/Logo';
 import MyAvatar from '../../components/MyAvatar';
@@ -25,7 +16,6 @@ import NavSection from '../../components/NavSection';
 import { MHidden } from '../../components/@material-extend';
 //
 import sidebarConfig from './SidebarConfig';
-import { DocIcon } from '../../assets';
 
 // ----------------------------------------------------------------------
 
@@ -47,15 +37,6 @@ const AccountStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(2, 2.5),
   borderRadius: theme.shape.borderRadiusSm,
   backgroundColor: theme.palette.grey[500_12]
-}));
-
-const DocStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(2.5),
-  borderRadius: theme.shape.borderRadiusMd,
-  backgroundColor:
-    theme.palette.mode === 'light'
-      ? alpha(theme.palette.primary.main, 0.08)
-      : theme.palette.primary.lighter
 }));
 
 // ----------------------------------------------------------------------
@@ -178,24 +159,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: Dash
       <NavSection navConfig={sidebarConfig} isShow={!isCollapse} />
 
       <Box sx={{ flexGrow: 1 }} />
-
-      {!isCollapse && (
-        <Box sx={{ px: 2.5, pb: 3, mt: 10, width: 1 }}>
-          <DocStyle>
-            <DocIcon sx={{ width: 36, height: 36, mb: 2 }} />
-            <Typography gutterBottom variant="subtitle1" sx={{ color: 'grey.800' }}>
-              Hi, {user?.displayName}
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 2, color: 'grey.600' }}>
-              Need help?
-              <br /> Please check our docs
-            </Typography>
-            <Button fullWidth href={PATH_DOCS} target="_blank" variant="contained">
-              Documentation
-            </Button>
-          </DocStyle>
-        </Box>
-      )}
     </Scrollbar>
   );
 
